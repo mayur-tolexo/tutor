@@ -52,7 +52,8 @@ export function Exercise() {
         if (cancelled) return
         setExercise(ex)
         setCode(loadDraft(id) ?? ex.starter)
-        setStdin(loadStdin(id))
+        // First Run uses the first example input, so input() never hits EOF out of the box.
+        setStdin(loadStdin(id) || ex.visible_cases[0]?.stdin || '')
         setSheetOpen(!wasOpened(id))
         markOpened(id)
       })

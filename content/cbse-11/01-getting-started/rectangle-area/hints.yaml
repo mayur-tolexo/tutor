@@ -39,6 +39,12 @@ hints:
     text:
       hinglish: "Do alag type mix ho gaye (jaise str + int). Error message mein dekho kaunse types hain, phir socho input() ne kya type diya tha."
       en: "Two different types got mixed (like str + int). Look at which types the error names, then think about what type input() gave you."
+  - id: eof-error
+    match:
+      exception: "EOFError"
+    text:
+      hinglish: "input() ne value maangi lekin input khatam ho gaya. Run karte waqt INPUT box mein har input() ke liye ek line do (example input copy karo). Submit mein yeh aaye toh tum test se zyada baar input() call kar rahe ho."
+      en: "input() asked for a value but the input had run out. When you Run, put one line in the INPUT box for every input() call (copy the example input). If this happens on Submit, you are calling input() more times than the test provides lines."
   - id: not-converted
     match:
       flag: "input_not_converted"
