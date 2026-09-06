@@ -1,0 +1,8 @@
+cases:
+  - id: hello
+    stdin: "Hello World\n"
+    stdout: "hELLO wORLD\n"
+  - id: digits
+    stdin: "abc123XYZ!\n"
+    stdout: "ABC123xyz!\n"
+    hidden: true

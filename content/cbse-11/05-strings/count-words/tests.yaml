@@ -1,0 +1,8 @@
+cases:
+  - id: basic
+    stdin: "Python is fun\n"
+    stdout: "Words: 3\nCharacters: 11\n"
+  - id: extra-spaces
+    stdin: "  many   spaces here  \n"
+    stdout: "Words: 3\nCharacters: 14\n"
+    hidden: true

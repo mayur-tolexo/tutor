@@ -1,0 +1,16 @@
+cases:
+  - id: seven
+    stdin: "7\n"
+    stdout: "0 1 1 2 3 5 8\n"
+  - id: one
+    stdin: "1\n"
+    stdout: "0\n"
+    hidden: true
+  - id: two
+    stdin: "2\n"
+    stdout: "0 1\n"
+    hidden: true
+  - id: ten
+    stdin: "10\n"
+    stdout: "0 1 1 2 3 5 8 13 21 34\n"
+    hidden: true

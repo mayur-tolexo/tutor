@@ -1,0 +1,15 @@
+cases:
+  - id: boiling
+    stdin: "100\n"
+    stdout: "212.0\n"
+  - id: body
+    stdin: "37\n"
+    stdout: "98.6\n"
+  - id: freezing
+    stdin: "0\n"
+    stdout: "32.0\n"
+    hidden: true
+  - id: negative
+    stdin: "-40\n"
+    stdout: "-40.0\n"
+    hidden: true

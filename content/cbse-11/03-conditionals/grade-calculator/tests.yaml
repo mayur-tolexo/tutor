@@ -1,0 +1,22 @@
+cases:
+  - id: a
+    stdin: "95\n"
+    stdout: "A\n"
+  - id: b
+    stdin: "75\n"
+    stdout: "B\n"
+  - id: c
+    stdin: "50\n"
+    stdout: "C\n"
+  - id: f
+    stdin: "49\n"
+    stdout: "F\n"
+    hidden: true
+  - id: boundary-a
+    stdin: "90\n"
+    stdout: "A\n"
+    hidden: true
+  - id: boundary-b
+    stdin: "89\n"
+    stdout: "B\n"
+    hidden: true

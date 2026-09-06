@@ -1,0 +1,15 @@
+cases:
+  - id: 153
+    stdin: "153\n"
+    stdout: "Armstrong\n"
+  - id: 123
+    stdin: "123\n"
+    stdout: "Not Armstrong\n"
+  - id: 9474
+    stdin: "9474\n"
+    stdout: "Armstrong\n"
+    hidden: true
+  - id: single
+    stdin: "7\n"
+    stdout: "Armstrong\n"
+    hidden: true

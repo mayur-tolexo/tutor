@@ -1,0 +1,8 @@
+cases:
+  - id: basic
+    stdin: "4\n2 4 6 8\n"
+    stdout: "Sum: 20\nAverage: 5.0\n"
+  - id: fraction
+    stdin: "3\n1 2 4\n"
+    stdout: "Sum: 7\nAverage: 2.3333333333333335\n"
+    hidden: true

@@ -1,0 +1,8 @@
+cases:
+  - id: basic
+    stdin: "3\n8\n"
+    stdout: "8 3\n"
+  - id: negative
+    stdin: "-4\n10\n"
+    stdout: "10 -4\n"
+    hidden: true

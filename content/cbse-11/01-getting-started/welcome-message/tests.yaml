@@ -1,0 +1,8 @@
+cases:
+  - id: asha
+    stdin: "Asha\n"
+    stdout: "Welcome, Asha!\n"
+  - id: full-name
+    stdin: "Ravi Kumar\n"
+    stdout: "Welcome, Ravi Kumar!\n"
+    hidden: true

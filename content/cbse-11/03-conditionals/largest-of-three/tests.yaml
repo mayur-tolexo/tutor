@@ -1,0 +1,15 @@
+cases:
+  - id: first
+    stdin: "10\n3\n7\n"
+    stdout: "10\n"
+  - id: last
+    stdin: "1\n2\n30\n"
+    stdout: "30\n"
+  - id: middle
+    stdin: "4\n9\n2\n"
+    stdout: "9\n"
+    hidden: true
+  - id: ties
+    stdin: "5\n5\n2\n"
+    stdout: "5\n"
+    hidden: true

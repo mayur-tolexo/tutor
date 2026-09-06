@@ -1,0 +1,8 @@
+cases:
+  - id: basic
+    stdin: "4\n1 Asha 82\n2 Ravi 60\n3 Meena 75\n4 Karan 91\n"
+    stdout: "Asha\nKaran\n"
+  - id: nobody
+    stdin: "2\n1 Amit 40\n2 Neha 75\n"
+    stdout: "None\n"
+    hidden: true

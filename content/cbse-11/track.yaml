@@ -1,0 +1,95 @@
+id: cbse-11
+title: CBSE Class 11 Computer Science (Python)
+units:
+  - id: getting-started
+    title: "Getting started with Python"
+    exercises:
+      - cbse-11/welcome-message
+      - cbse-11/rectangle-area
+      - cbse-11/swap-two-numbers
+      - cbse-11/simple-interest
+    must_pass:
+      - cbse-11/welcome-message
+      - cbse-11/rectangle-area
+  - id: operators-expressions
+    title: "Operators and expressions"
+    exercises:
+      - cbse-11/celsius-to-fahrenheit
+      - cbse-11/sum-of-digits
+      - cbse-11/division-results
+    must_pass:
+      - cbse-11/sum-of-digits
+  - id: conditionals
+    title: "Flow of control: if, elif, else"
+    exercises:
+      - cbse-11/larger-of-two
+      - cbse-11/largest-of-three
+      - cbse-11/even-or-odd
+      - cbse-11/grade-calculator
+      - cbse-11/leap-year
+    must_pass:
+      - cbse-11/larger-of-two
+      - cbse-11/largest-of-three
+      - cbse-11/grade-calculator
+  - id: loops
+    title: "Flow of control: for and while"
+    exercises:
+      - cbse-11/multiplication-table
+      - cbse-11/star-triangle
+      - cbse-11/number-pattern
+      - cbse-11/sum-of-series
+      - cbse-11/fibonacci-terms
+      - cbse-11/prime-or-composite
+      - cbse-11/perfect-number
+      - cbse-11/armstrong-number
+      - cbse-11/palindrome-number
+      - cbse-11/gcd-lcm
+      - cbse-11/factorial
+    must_pass:
+      - cbse-11/star-triangle
+      - cbse-11/sum-of-series
+      - cbse-11/fibonacci-terms
+      - cbse-11/prime-or-composite
+      - cbse-11/perfect-number
+      - cbse-11/armstrong-number
+      - cbse-11/palindrome-number
+      - cbse-11/gcd-lcm
+  - id: strings
+    title: "Strings"
+    exercises:
+      - cbse-11/count-vowels-consonants
+      - cbse-11/string-palindrome
+      - cbse-11/swap-case
+      - cbse-11/reverse-words
+      - cbse-11/count-words
+    must_pass:
+      - cbse-11/count-vowels-consonants
+      - cbse-11/string-palindrome
+      - cbse-11/swap-case
+  - id: lists
+    title: "Lists"
+    exercises:
+      - cbse-11/largest-smallest-in-list
+      - cbse-11/swap-even-odd-positions
+      - cbse-11/linear-search
+      - cbse-11/sum-and-average
+    must_pass:
+      - cbse-11/largest-smallest-in-list
+      - cbse-11/swap-even-odd-positions
+      - cbse-11/linear-search
+  - id: tuples
+    title: "Tuples"
+    exercises:
+      - cbse-11/tuple-max-min
+      - cbse-11/tuple-search-count
+    must_pass:
+      - cbse-11/tuple-max-min
+  - id: dictionaries
+    title: "Dictionaries"
+    exercises:
+      - cbse-11/students-above-75
+      - cbse-11/word-frequency
+      - cbse-11/phone-book
+    must_pass:
+      - cbse-11/students-above-75
+      - cbse-11/word-frequency

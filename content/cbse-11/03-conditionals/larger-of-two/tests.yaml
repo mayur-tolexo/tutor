@@ -1,0 +1,15 @@
+cases:
+  - id: first
+    stdin: "9\n4\n"
+    stdout: "9\n"
+  - id: second
+    stdin: "3\n12\n"
+    stdout: "12\n"
+  - id: equal
+    stdin: "5\n5\n"
+    stdout: "Equal\n"
+    hidden: true
+  - id: negative
+    stdin: "-7\n-2\n"
+    stdout: "-2\n"
+    hidden: true

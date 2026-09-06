@@ -1,0 +1,11 @@
+cases:
+  - id: basic
+    stdin: "123\n"
+    stdout: "6\n"
+  - id: nines
+    stdin: "999\n"
+    stdout: "27\n"
+  - id: zeros
+    stdin: "406\n"
+    stdout: "10\n"
+    hidden: true

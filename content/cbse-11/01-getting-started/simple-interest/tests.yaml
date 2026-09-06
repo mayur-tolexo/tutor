@@ -1,0 +1,8 @@
+cases:
+  - id: basic
+    stdin: "1000\n5\n2\n"
+    stdout: "100.0\n"
+  - id: odd
+    stdin: "2500\n7\n3\n"
+    stdout: "525.0\n"
+    hidden: true

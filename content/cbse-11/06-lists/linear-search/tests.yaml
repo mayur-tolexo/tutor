@@ -1,0 +1,11 @@
+cases:
+  - id: found
+    stdin: "5\n3 8 1 8 6\n8\n"
+    stdout: "1\n"
+  - id: missing
+    stdin: "4\n2 4 6 8\n5\n"
+    stdout: "Not found\n"
+  - id: first
+    stdin: "3\n9 9 9\n9\n"
+    stdout: "0\n"
+    hidden: true

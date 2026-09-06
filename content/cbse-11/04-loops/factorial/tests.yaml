@@ -1,0 +1,12 @@
+cases:
+  - id: five
+    stdin: "5\n"
+    stdout: "120\n"
+  - id: zero
+    stdin: "0\n"
+    stdout: "1\n"
+    hidden: true
+  - id: ten
+    stdin: "10\n"
+    stdout: "3628800\n"
+    hidden: true

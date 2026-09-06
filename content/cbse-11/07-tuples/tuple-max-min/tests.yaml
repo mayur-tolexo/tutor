@@ -1,0 +1,8 @@
+cases:
+  - id: basic
+    stdin: "4\n15 3 27 9\n"
+    stdout: "Largest: 27\nSmallest: 3\n"
+  - id: negatives
+    stdin: "3\n-1 -8 -3\n"
+    stdout: "Largest: -1\nSmallest: -8\n"
+    hidden: true

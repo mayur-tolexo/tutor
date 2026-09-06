@@ -1,0 +1,8 @@
+cases:
+  - id: hit
+    stdin: "3\nAsha 9876543210\nRavi 9123456780\nMeena 9000011111\nRavi\n"
+    stdout: "9123456780\n"
+  - id: miss
+    stdin: "2\nAsha 9876543210\nRavi 9123456780\nKaran\n"
+    stdout: "Not found\n"
+    hidden: true

@@ -1,0 +1,12 @@
+cases:
+  - id: three
+    stdin: "I love Python\n"
+    stdout: "Python love I\n"
+  - id: one
+    stdin: "Hello\n"
+    stdout: "Hello\n"
+    hidden: true
+  - id: many
+    stdin: "the quick brown fox jumps\n"
+    stdout: "jumps fox brown quick the\n"
+    hidden: true

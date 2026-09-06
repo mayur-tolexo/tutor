@@ -1,0 +1,15 @@
+cases:
+  - id: six
+    stdin: "6\n"
+    stdout: "Perfect\n"
+  - id: twelve
+    stdin: "12\n"
+    stdout: "Not perfect\n"
+  - id: twenty-eight
+    stdin: "28\n"
+    stdout: "Perfect\n"
+    hidden: true
+  - id: one
+    stdin: "1\n"
+    stdout: "Not perfect\n"
+    hidden: true

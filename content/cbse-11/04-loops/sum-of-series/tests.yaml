@@ -1,0 +1,15 @@
+cases:
+  - id: two-three
+    stdin: "2\n3\n"
+    stdout: "15\n"
+  - id: three-two
+    stdin: "3\n2\n"
+    stdout: "13\n"
+  - id: one
+    stdin: "5\n0\n"
+    stdout: "1\n"
+    hidden: true
+  - id: ten
+    stdin: "10\n4\n"
+    stdout: "11111\n"
+    hidden: true

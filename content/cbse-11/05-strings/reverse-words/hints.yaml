@@ -1,0 +1,65 @@
+hints:
+  - id: letters
+    match:
+      outcome: failed
+      failing_test: "three"
+    text:
+      hinglish: "Letters reverse ho gaye words ke bajaye? `s[::-1]` poori string ulta karta hai. Pehle `s.split()` se words ki list banao, phir list ko reverse karo."
+      en: "Did the letters get reversed instead of the words? `s[::-1]` reverses the whole string. First make a list of words with `s.split()`, then reverse the list."
+  - id: syntax
+    match:
+      exception: "SyntaxError"
+    text:
+      hinglish: "Python ko yeh line samajh nahi aayi. if/for/while/else ke end mein colon (:) hai? Brackets aur quotes band hain?"
+      en: "Python could not parse this line. Is there a colon (:) at the end of if/for/while/else? Are brackets and quotes closed?"
+    line_hint: true
+  - id: indent
+    match:
+      exception: "IndentationError"
+    text:
+      hinglish: "Indentation galat hai. if/for/while ke baad ki lines exactly 4 spaces andar honi chahiye, aur ek block ki sab lines same level par."
+      en: "Indentation is off. Lines after if/for/while must be indented exactly 4 spaces, and every line of a block at the same level."
+    line_hint: true
+  - id: name-error
+    match:
+      exception: "NameError"
+    text:
+      hinglish: "Ek variable use hua jo define nahi hai. Spelling aur capital/small letters exactly same hain? Python mein Total aur total alag hain."
+      en: "A variable is used that was never defined. Is the spelling and capitalisation exactly the same? In Python, Total and total are different."
+    line_hint: true
+  - id: value-error
+    match:
+      exception: "ValueError"
+    text:
+      hinglish: "int() ko aisi value mili jo number nahi hai. Kya input mein extra text hai, ya tumne ek line mein do numbers padhne ki koshish ki jabki test ek-ek line mein deta hai?"
+      en: "int() received something that is not a number. Is there extra text in the input, or are you reading two numbers from one line when the test gives one per line?"
+  - id: type-error
+    match:
+      exception: "TypeError"
+    text:
+      hinglish: "Do alag type mix ho gaye (jaise str + int). Error message mein dekho kaunse types hain, phir socho input() ne kya type diya tha."
+      en: "Two different types got mixed (like str + int). Look at which types the error names, then think about what type input() gave you."
+  - id: not-converted
+    match:
+      flag: "input_not_converted"
+    text:
+      hinglish: "input() hamesha string deta hai, number nahi. '5' aur 5 alag cheezein hain — compare ya calculate karne se pehle int() lagana padega."
+      en: "input() always returns a string, never a number. '5' and 5 are different — wrap it in int() before comparing or calculating."
+  - id: no-input
+    match:
+      flag: "no_input_call"
+    text:
+      hinglish: "Program input() se value padh hi nahi raha. Test tumhe stdin par value deta hai — usse input() se lo, hardcode mat karo."
+      en: "The program never calls input(). The test provides values on stdin — read them with input(), don't hardcode them."
+  - id: no-print
+    match:
+      flag: "no_print_call"
+    text:
+      hinglish: "Kuch print hi nahi ho raha! Answer calculate karna kaafi nahi — print() se output dena zaroori hai."
+      en: "Nothing is printed! Computing the answer is not enough — you must print() it."
+  - id: timeout
+    match:
+      flag: "while_true_no_break"
+    text:
+      hinglish: "while True: ke andar koi break nahi hai — yeh loop kabhi rukega nahi. Kab rukna chahiye? Wahan break lagao ya condition badlo."
+      en: "There is no break inside while True: — this loop never stops. When should it stop? Add a break there, or change the condition."

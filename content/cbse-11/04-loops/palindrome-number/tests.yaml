@@ -1,0 +1,15 @@
+cases:
+  - id: 121
+    stdin: "121\n"
+    stdout: "Palindrome\n"
+  - id: 123
+    stdin: "123\n"
+    stdout: "Not palindrome\n"
+  - id: even-length
+    stdin: "4554\n"
+    stdout: "Palindrome\n"
+    hidden: true
+  - id: single
+    stdin: "5\n"
+    stdout: "Palindrome\n"
+    hidden: true

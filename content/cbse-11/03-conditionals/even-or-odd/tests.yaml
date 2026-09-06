@@ -1,0 +1,15 @@
+cases:
+  - id: even
+    stdin: "10\n"
+    stdout: "Even\n"
+  - id: odd
+    stdin: "7\n"
+    stdout: "Odd\n"
+  - id: zero
+    stdin: "0\n"
+    stdout: "Even\n"
+    hidden: true
+  - id: negative-odd
+    stdin: "-3\n"
+    stdout: "Odd\n"
+    hidden: true

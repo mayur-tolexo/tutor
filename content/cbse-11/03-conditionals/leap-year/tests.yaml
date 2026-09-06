@@ -1,0 +1,15 @@
+cases:
+  - id: normal-leap
+    stdin: "2024\n"
+    stdout: "Leap\n"
+  - id: century
+    stdin: "1900\n"
+    stdout: "Not leap\n"
+  - id: four-hundred
+    stdin: "2000\n"
+    stdout: "Leap\n"
+    hidden: true
+  - id: odd
+    stdin: "2023\n"
+    stdout: "Not leap\n"
+    hidden: true

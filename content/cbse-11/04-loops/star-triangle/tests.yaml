@@ -1,0 +1,12 @@
+cases:
+  - id: four
+    stdin: "4\n"
+    stdout: "*\n**\n***\n****\n"
+  - id: one
+    stdin: "1\n"
+    stdout: "*\n"
+    hidden: true
+  - id: six
+    stdin: "6\n"
+    stdout: "*\n**\n***\n****\n*****\n******\n"
+    hidden: true

@@ -1,0 +1,8 @@
+cases:
+  - id: basic
+    stdin: "the cat and the dog and the bird\n"
+    stdout: "the: 3\ncat: 1\nand: 2\ndog: 1\nbird: 1\n"
+  - id: unique
+    stdin: "a b c\n"
+    stdout: "a: 1\nb: 1\nc: 1\n"
+    hidden: true

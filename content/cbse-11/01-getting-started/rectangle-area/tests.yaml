@@ -1,0 +1,11 @@
+cases:
+  - id: 5x3
+    stdin: "5\n3\n"
+    stdout: "Area: 15\nPerimeter: 16\n"
+  - id: square
+    stdin: "7\n7\n"
+    stdout: "Area: 49\nPerimeter: 28\n"
+  - id: big
+    stdin: "120\n45\n"
+    stdout: "Area: 5400\nPerimeter: 330\n"
+    hidden: true

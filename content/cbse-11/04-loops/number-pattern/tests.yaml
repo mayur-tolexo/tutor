@@ -1,0 +1,8 @@
+cases:
+  - id: four
+    stdin: "4\n"
+    stdout: "1\n12\n123\n1234\n"
+  - id: five
+    stdin: "5\n"
+    stdout: "1\n12\n123\n1234\n12345\n"
+    hidden: true

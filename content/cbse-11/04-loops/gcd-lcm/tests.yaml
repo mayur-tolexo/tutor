@@ -1,0 +1,15 @@
+cases:
+  - id: 12-18
+    stdin: "12\n18\n"
+    stdout: "GCD: 6\nLCM: 36\n"
+  - id: coprime
+    stdin: "7\n5\n"
+    stdout: "GCD: 1\nLCM: 35\n"
+  - id: multiple
+    stdin: "8\n32\n"
+    stdout: "GCD: 8\nLCM: 32\n"
+    hidden: true
+  - id: large
+    stdin: "270\n192\n"
+    stdout: "GCD: 6\nLCM: 8640\n"
+    hidden: true

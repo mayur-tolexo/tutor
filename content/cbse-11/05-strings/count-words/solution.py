@@ -1,0 +1,5 @@
+s = input()
+words = s.split()
+chars = len(s.replace(' ', ''))
+print('Words:', len(words))
+print('Characters:', chars)

@@ -1,0 +1,36 @@
+# Local stack: Postgres plus the server built from this checkout.
+# Copy .env.example to .env and fill in the sandbox / model / Google settings.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: tutor
+      POSTGRES_PASSWORD: tutor
+      POSTGRES_DB: tutor
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tutor"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  tutor:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    env_file:
+      - ../.env
+    environment:
+      DATABASE_URL: postgres://tutor:tutor@db:5432/tutor?sslmode=disable
+      ADDR: ":8080"
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:

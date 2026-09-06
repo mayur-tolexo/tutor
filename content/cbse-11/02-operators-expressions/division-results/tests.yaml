@@ -1,0 +1,8 @@
+cases:
+  - id: basic
+    stdin: "17\n5\n"
+    stdout: "3\n2\n3.4\n"
+  - id: exact
+    stdin: "20\n4\n"
+    stdout: "5\n0\n5.0\n"
+    hidden: true

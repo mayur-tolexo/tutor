@@ -1,0 +1,15 @@
+cases:
+  - id: madam
+    stdin: "madam\n"
+    stdout: "Palindrome\n"
+  - id: python
+    stdin: "python\n"
+    stdout: "Not palindrome\n"
+  - id: case
+    stdin: "Madam\n"
+    stdout: "Not palindrome\n"
+    hidden: true
+  - id: single
+    stdin: "x\n"
+    stdout: "Palindrome\n"
+    hidden: true

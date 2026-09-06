@@ -1,0 +1,19 @@
+cases:
+  - id: seven
+    stdin: "7\n"
+    stdout: "Prime\n"
+  - id: nine
+    stdin: "9\n"
+    stdout: "Composite\n"
+  - id: two
+    stdin: "2\n"
+    stdout: "Prime\n"
+    hidden: true
+  - id: large-prime
+    stdin: "97\n"
+    stdout: "Prime\n"
+    hidden: true
+  - id: large-composite
+    stdin: "91\n"
+    stdout: "Composite\n"
+    hidden: true

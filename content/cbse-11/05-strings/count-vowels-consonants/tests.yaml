@@ -1,0 +1,12 @@
+cases:
+  - id: hello
+    stdin: "Hello World\n"
+    stdout: "Vowels: 3\nConsonants: 7\nUppercase: 2\nLowercase: 8\n"
+  - id: mixed
+    stdin: "Python 3 is FUN, yes!\n"
+    stdout: "Vowels: 4\nConsonants: 10\nUppercase: 4\nLowercase: 10\n"
+    hidden: true
+  - id: empty-ish
+    stdin: "12345\n"
+    stdout: "Vowels: 0\nConsonants: 0\nUppercase: 0\nLowercase: 0\n"
+    hidden: true
