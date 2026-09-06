@@ -8,9 +8,7 @@ export interface ResultView {
   attempt: Attempt
 }
 
-interface Props {
-  open: boolean
-  onClose: () => void
+export interface OutputContentProps {
   result: ResultView | null
   stdin: string
   onStdinChange: (v: string) => void
@@ -19,25 +17,45 @@ interface Props {
   onToggleLang: () => void
 }
 
-/** Slide-up panel showing run output, submit verdicts and stacked hints. */
-export function OutputDrawer({ open, onClose, result, stdin, onStdinChange, hints, lang, onToggleLang }: Props) {
-  const title = result?.mode === 'run' ? 'Output' : result?.mode === 'submit' ? 'Result' : 'Hints'
+interface DrawerProps extends OutputContentProps {
+  open: boolean
+  onClose: () => void
+}
+
+/** Title for the current result kind. */
+export function outputTitle(result: ResultView | null): string {
+  return result?.mode === 'run' ? 'Output' : result?.mode === 'submit' ? 'Result' : 'Hints'
+}
+
+/** Run output, submit verdicts and stacked hints; shared by the phone drawer and the desktop panel. */
+export function OutputContent({ result, stdin, onStdinChange, hints, lang, onToggleLang }: OutputContentProps) {
+  const idle = !result && hints.length === 0
+  return (
+    <>
+      {idle && <div className="muted small">Run your code to see output here, or Submit to check all cases.</div>}
+      {result?.mode === 'run' && <RunPane attempt={result.attempt} stdin={stdin} onStdinChange={onStdinChange} />}
+      {result?.mode === 'submit' && <SubmitPane attempt={result.attempt} />}
+      {hints.map((h) => (
+        <HintCard key={h.hint_id} hint={h} lang={lang} onToggleLang={onToggleLang} />
+      ))}
+    </>
+  )
+}
+
+/** Phone chrome: slide-up panel wrapping OutputContent. */
+export function OutputDrawer({ open, onClose, ...content }: DrawerProps) {
   return (
     <div className={`drawer ${open ? 'open' : ''}`} aria-hidden={!open}>
       <div className="drawer-head">
-        <span className="drawer-title">{title}</span>
-        {result && <span className="drawer-ms">{result.attempt.duration_ms} ms</span>}
+        <span className="drawer-title">{outputTitle(content.result)}</span>
+        {content.result && <span className="drawer-ms">{content.result.attempt.duration_ms} ms</span>}
         <span className="spacer" />
         <button type="button" className="btn btn-ghost btn-xs" onClick={onClose} aria-label="Close output">
           ▾
         </button>
       </div>
       <div className="drawer-body">
-        {result?.mode === 'run' && <RunPane attempt={result.attempt} stdin={stdin} onStdinChange={onStdinChange} />}
-        {result?.mode === 'submit' && <SubmitPane attempt={result.attempt} />}
-        {hints.map((h) => (
-          <HintCard key={h.hint_id} hint={h} lang={lang} onToggleLang={onToggleLang} />
-        ))}
+        <OutputContent {...content} />
       </div>
     </div>
   )

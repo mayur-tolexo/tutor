@@ -5,6 +5,7 @@ import { python } from '@codemirror/lang-python'
 import { bracketMatching, indentUnit } from '@codemirror/language'
 import { insertKey, type Sel } from './keyboardBar'
 import { highlightCompartment, highlightFor, prefersDark } from './theme'
+import { pinsExtension } from './pinField'
 
 /** Extensions shared by every editor instance; Python indentation on Enter comes from lang-python. */
 export function baseExtensions(onChange: (doc: string) => void): Extension[] {
@@ -16,6 +17,7 @@ export function baseExtensions(onChange: (doc: string) => void): Extension[] {
     indentUnit.of('    '),
     python(),
     highlightCompartment.of(highlightFor(prefersDark())),
+    pinsExtension(),
     keymap.of([indentWithTab, ...defaultKeymap, ...historyKeymap]),
     EditorView.lineWrapping,
     // Keep phone keyboards from auto-correcting or capitalising code.

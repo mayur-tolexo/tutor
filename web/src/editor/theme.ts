@@ -4,16 +4,16 @@ import { tags as t } from '@lezer/highlight'
 
 /** Token colours tuned for a dark background; the light scheme uses CodeMirror's default. */
 const darkHighlight = HighlightStyle.define([
-  { tag: t.keyword, color: '#ff7b72' },
-  { tag: [t.controlKeyword, t.operatorKeyword], color: '#ff7b72' },
-  { tag: [t.definition(t.variableName), t.function(t.variableName)], color: '#d2a8ff' },
-  { tag: [t.function(t.propertyName), t.propertyName], color: '#79c0ff' },
-  { tag: [t.string, t.special(t.string)], color: '#a5d6ff' },
-  { tag: [t.number, t.bool, t.null, t.atom], color: '#79c0ff' },
-  { tag: t.comment, color: '#8b949e', fontStyle: 'italic' },
-  { tag: t.operator, color: '#ff7b72' },
-  { tag: [t.className, t.typeName], color: '#ffa657' },
-  { tag: t.invalid, color: '#f85149' },
+  { tag: t.keyword, color: '#E8A356' },
+  { tag: [t.controlKeyword, t.operatorKeyword], color: '#E8A356' },
+  { tag: [t.definition(t.variableName), t.function(t.variableName)], color: '#D9C6A5' },
+  { tag: [t.function(t.propertyName), t.propertyName], color: '#9FC4B8' },
+  { tag: [t.string, t.special(t.string)], color: '#A8C686' },
+  { tag: [t.number, t.bool, t.null, t.atom], color: '#8FB8D8' },
+  { tag: t.comment, color: '#8A8272', fontStyle: 'italic' },
+  { tag: t.operator, color: '#C9B99A' },
+  { tag: [t.className, t.typeName], color: '#E3B77E' },
+  { tag: t.invalid, color: '#E06B5A' },
 ])
 
 const query = '(prefers-color-scheme: dark)'

@@ -14,7 +14,8 @@ export function Header() {
 
   return (
     <header className="header">
-      <Link to="/" className="brand">
+      <Link to="/" className="brand" aria-label="tutor home">
+        <span className="mark" aria-hidden />
         tutor
       </Link>
       {!online && <span className="pill pill-offline">offline</span>}

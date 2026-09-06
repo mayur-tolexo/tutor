@@ -6,22 +6,27 @@ import { ApiError } from '../api/client'
 import type { Attempt, AttemptMode, Exercise as ExerciseT, Hint } from '../api/types'
 import { CodeEditor } from '../editor/CodeEditor'
 import { applyBarKey } from '../editor/setup'
+import { applyPins } from '../editor/pinField'
+import { buildPins } from '../editor/pins'
 import { useKeyboardOffset } from '../editor/useKeyboardOffset'
 import { ActionBar, type Busy } from '../components/ActionBar'
 import { KeyboardBar } from '../components/KeyboardBar'
-import { OutputDrawer, type ResultView } from '../components/OutputDrawer'
+import { OutputContent, OutputDrawer, outputTitle, type ResultView } from '../components/OutputDrawer'
 import { StatementSheet } from '../components/StatementSheet'
 import { useToast } from '../components/Toast'
+import { stopSpeaking } from '../speech/speak'
 import { useApp } from '../state/AppContext'
 import { uuidv4 } from '../state/deviceId'
 import { clearDraft, createDraftSaver, loadDraft, loadStdin, markOpened, saveStdin, wasOpened } from '../state/drafts'
+import { DESKTOP_QUERY, useMediaQuery } from '../state/useMediaQuery'
 
-/** Exercise view: statement, editor, symbol bar, actions and the output drawer. */
+/** Exercise view: statement, editor, symbol bar, actions and the output drawer or side panel. */
 export function Exercise() {
   const params = useParams()
   const id = params['*'] ?? ''
   const { online, lang, setLang, refreshProgress } = useApp()
   const toast = useToast()
+  const desktop = useMediaQuery(DESKTOP_QUERY)
 
   const [exercise, setExercise] = useState<ExerciseT | null>(null)
   const [loadError, setLoadError] = useState<string | null>(null)
@@ -35,6 +40,8 @@ export function Exercise() {
   const [note, setNote] = useState<string | null>(null)
 
   const viewRef = useRef<EditorView | null>(null)
+  // Code as it was when the last attempt was sent; pins only apply while the editor still matches it.
+  const attemptCode = useRef<string | null>(null)
   const saver = useMemo(() => createDraftSaver(300), [])
   const kbOffset = useKeyboardOffset()
 
@@ -46,6 +53,7 @@ export function Exercise() {
     setResult(null)
     setHints([])
     setDrawerOpen(false)
+    attemptCode.current = null
     api
       .getExercise(id)
       .then((ex) => {
@@ -61,8 +69,18 @@ export function Exercise() {
     return () => {
       cancelled = true
       saver.flush()
+      stopSpeaking()
     }
   }, [id, saver])
+
+  // Pin the error and any line-bearing hints under their lines, but only for the code that was attempted.
+  useEffect(() => {
+    const view = viewRef.current
+    if (!view) return
+    const current = view.state.doc.toString()
+    if (attemptCode.current === null || current !== attemptCode.current) return
+    applyPins(view, buildPins(result?.attempt ?? null, hints, view.state.doc.lines), lang)
+  }, [result, hints, lang])
 
   const onCodeChange = useCallback(
     (doc: string) => {
@@ -102,12 +120,16 @@ export function Exercise() {
   const runAttempt = async (mode: AttemptMode): Promise<Attempt | null> => {
     saver.flush()
     setNote(null)
+    const view = viewRef.current
+    if (view) applyPins(view, [], lang)
+    attemptCode.current = null
     try {
       const attempt = await api.createAttempt(
         { exercise_id: id, code, mode, stdin: mode === 'run' ? stdin : undefined, idempotency_key: uuidv4() },
         (n) => setNote(`Servers busy, retrying… (${n}/3)`),
       )
       setNote(null)
+      attemptCode.current = code
       setResult({ mode, attempt })
       setDrawerOpen(true)
       if (mode === 'submit') {
@@ -164,24 +186,43 @@ export function Exercise() {
   if (loadError) return <main className="page"><div className="err">Could not load this exercise: {loadError}</div></main>
   if (!exercise) return <main className="page"><div className="muted">Loading…</div></main>
 
-  const dockStyle = { bottom: kbOffset }
+  const content = { result, stdin, onStdinChange, hints, lang, onToggleLang: toggleLang }
+  const actions = (
+    <ActionBar busy={busy} online={online} onRun={() => void doRun()} onSubmit={() => void doSubmit()} onHint={() => void doHint()} />
+  )
 
+  if (desktop) {
+    return (
+      <main className="exercise exercise-desktop">
+        <aside className="col col-statement">
+          <StatementSheet exercise={exercise} open onToggle={() => {}} onReset={reset} fixed />
+        </aside>
+        <section className="col col-editor">
+          <CodeEditor value={code} onChange={onCodeChange} viewRef={viewRef} />
+          {note && <div className="note dock-note">{note}</div>}
+          {actions}
+        </section>
+        <aside className="col col-output">
+          <div className="panel-head">
+            <span className="drawer-title">{outputTitle(result)}</span>
+            {result && <span className="drawer-ms">{result.attempt.duration_ms} ms</span>}
+          </div>
+          <div className="panel-body">
+            <OutputContent {...content} />
+          </div>
+        </aside>
+      </main>
+    )
+  }
+
+  const dockStyle = { bottom: kbOffset }
   return (
     <main className="exercise">
       <StatementSheet exercise={exercise} open={sheetOpen} onToggle={() => setSheetOpen((o) => !o)} onReset={reset} />
       <CodeEditor value={code} onChange={onCodeChange} viewRef={viewRef} />
 
       <div className="drawer-anchor" style={dockStyle}>
-        <OutputDrawer
-          open={drawerOpen}
-          onClose={() => setDrawerOpen(false)}
-          result={result}
-          stdin={stdin}
-          onStdinChange={onStdinChange}
-          hints={hints}
-          lang={lang}
-          onToggleLang={toggleLang}
-        />
+        <OutputDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} {...content} />
       </div>
 
       <div className="dock" style={dockStyle}>
@@ -191,7 +232,7 @@ export function Exercise() {
           </button>
         )}
         {note && <div className="note dock-note">{note}</div>}
-        <ActionBar busy={busy} online={online} onRun={() => void doRun()} onSubmit={() => void doSubmit()} onHint={() => void doHint()} />
+        {actions}
         <KeyboardBar onKey={onBarKey} />
       </div>
     </main>

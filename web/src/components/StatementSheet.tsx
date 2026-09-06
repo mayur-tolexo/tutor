@@ -8,27 +8,37 @@ interface Props {
   onToggle: () => void
   /** Replaces the draft with the starter code. */
   onReset: () => void
+  /** Desktop: always expanded, no toggle. */
+  fixed?: boolean
 }
 
 /** Collapsible problem statement with visible test cases as example blocks. */
-export function StatementSheet({ exercise, open, onToggle, onReset }: Props) {
+export function StatementSheet({ exercise, open, onToggle, onReset, fixed = false }: Props) {
   const html = useMemo(() => renderMarkdown(exercise.statement_md), [exercise.statement_md])
+  const isOpen = fixed || open
 
   return (
-    <section className={`sheet ${open ? 'open' : ''}`}>
+    <section className={`sheet ${isOpen ? 'open' : ''} ${fixed ? 'sheet-fixed' : ''}`}>
       <div className="sheet-head">
-        <button className="sheet-toggle" onClick={onToggle} aria-expanded={open}>
-          <span className="chev" aria-hidden>
-            {open ? '▾' : '▸'}
-          </span>
-          <span className="sheet-title">{exercise.title}</span>
-          <span className="sheet-meta">{'★'.repeat(exercise.difficulty)}</span>
-        </button>
+        {fixed ? (
+          <div className="sheet-toggle">
+            <span className="sheet-title">{exercise.title}</span>
+            <span className="sheet-meta">{'★'.repeat(exercise.difficulty)}</span>
+          </div>
+        ) : (
+          <button className="sheet-toggle" onClick={onToggle} aria-expanded={open}>
+            <span className="chev" aria-hidden>
+              {open ? '▾' : '▸'}
+            </span>
+            <span className="sheet-title">{exercise.title}</span>
+            <span className="sheet-meta">{'★'.repeat(exercise.difficulty)}</span>
+          </button>
+        )}
         <button type="button" className="btn btn-ghost btn-xs" onClick={onReset} title="Reset to starter">
           Reset
         </button>
       </div>
-      {open && (
+      {isOpen && (
         <div className="sheet-body">
           <div className="md" dangerouslySetInnerHTML={{ __html: html }} />
           {exercise.visible_cases.length > 0 && (

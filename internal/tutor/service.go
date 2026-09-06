@@ -61,6 +61,9 @@ func (s *Service) Hint(ctx context.Context, req Request) (store.Hint, error) {
 		Level:      level,
 		Lang:       req.Lang,
 		CreatedAt:  now,
+		// A crash has a known line; every hint about it should point there so the
+		// editor can pin it. Canned hints opt in separately via line_hint.
+		Line: f.ErrorLine,
 	}
 
 	// Canned hints answer the common mistakes without a model call. A
@@ -68,8 +71,8 @@ func (s *Service) Hint(ctx context.Context, req Request) (store.Hint, error) {
 	if req.Question == "" {
 		if canned, ok := MatchCanned(req.Exercise.Hints, f); ok {
 			h.Source, h.Text = SourceCanned, canned.TextIn(req.Lang)
-			if canned.LineHint {
-				h.Line = f.ErrorLine
+			if !canned.LineHint {
+				h.Line = 0
 			}
 			return h, s.Store.CreateHint(ctx, &h)
 		}

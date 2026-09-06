@@ -81,7 +81,11 @@ export function Track() {
                                 <span className="stars" aria-label={`difficulty ${ex.difficulty}`}>
                                   {'★'.repeat(ex.difficulty)}
                                 </span>
-                                {ex.must_pass && <span className="must">must pass</span>}
+                                {ex.must_pass && (
+                                  <span className="must" title="Must pass" aria-label="must pass">
+                                    ★
+                                  </span>
+                                )}
                               </span>
                             </span>
                             <StatusChip status={statusOf(ex)} />

@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import type { Hint, Lang } from '../api/types'
 import { renderInlineMarkdown } from './markdown'
+import { isSpeechAvailable, speak } from '../speech/speak'
 
 interface Props {
   hint: Hint
@@ -18,6 +19,11 @@ export function HintCard({ hint, lang, onToggleLang }: Props) {
         {hint.line !== undefined && <span className="hint-line">line {hint.line}</span>}
         {hint.source === 'degraded' && <span className="hint-src">basic hint</span>}
         <span className="spacer" />
+        {isSpeechAvailable() && (
+          <button type="button" className="btn btn-ghost btn-xs speak-btn" onClick={() => speak(hint.text, lang)} aria-label="Read the hint aloud">
+            <span aria-hidden>🔊</span> {lang === 'en' ? 'Listen' : 'Suno'}
+          </button>
+        )}
         <button type="button" className="btn btn-ghost btn-xs" onClick={onToggleLang}>
           Show in {lang === 'hinglish' ? 'English' : 'Hinglish'}
         </button>
