@@ -59,7 +59,7 @@ pre { margin: 0; font-family: var(--mono); font-size: 13px; line-height: 1.5; wh
 a { color: inherit; text-decoration: none; }
 h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -0.01em; }
 
-.app { min-height: 100dvh; display: flex; flex-direction: column; }
+.app { height: 100dvh; display: flex; flex-direction: column; }
 .spacer { flex: 1; }
 .muted { color: var(--fg-2); }
 .small { font-size: 12px; }
@@ -106,7 +106,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -0.01e
 .btn-hint { background: transparent; border-color: transparent; }
 
 /* Track page */
-.page { padding: 16px; max-width: 720px; margin: 0 auto; width: 100%; }
+.page { padding: 16px; max-width: 720px; margin: 0 auto; width: 100%; flex: 1; min-height: 0; overflow-y: auto; }
 .track-title { font-size: 26px; margin: 8px 0 12px; }
 .progressbar { height: 4px; background: var(--surface-2); border-radius: 2px; overflow: hidden; }
 .progressbar-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
@@ -136,7 +136,8 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -0.01e
 /* Exercise layout (phone) */
 .exercise {
   display: flex; flex-direction: column;
-  height: calc(100dvh - var(--header-h));
+  /* Sized by the flex parent so the real header height (font metrics) never pushes the dock off-screen. */
+  flex: 1; min-height: 0;
   max-width: 900px; margin: 0 auto; width: 100%;
   padding-bottom: var(--dock-h);
 }
@@ -282,7 +283,6 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -0.01e
     display: grid;
     grid-template-columns: 320px minmax(0, 1fr) 380px;
     max-width: none; padding-bottom: 0;
-    height: calc(100dvh - var(--header-h));
   }
   .col { min-height: 0; display: flex; flex-direction: column; }
   .col-statement { border-right: 1px solid var(--line); overflow: auto; }
